@@ -1,0 +1,44 @@
+{
+	"extName": {
+		"message": "Follow in Fediverse"
+	},
+	"extDescription": {
+		"message": "Simplifies follow other users between two different instances in the Fediverse(mastodon, misskey...)"
+	},
+	"addServer": {
+		"message": "add server"
+	},
+	"serverDomain": {
+		"message": "domain"
+	},
+	"serverType": {
+		"message": "type"
+	},
+	"getToken": {
+		"message": "getToken"
+	},
+	"serverToken": {
+		"message": "serverToken"
+	},
+	"delete": {
+		"message": "delete"
+	},
+	"typeAndDomainNotNull": {
+		"message": "type and domain can not be null"
+	},
+	"unknownError": {
+		"message": "unknown error please check console"
+	},
+	"notUserPage": {
+		"message": "not a user profile page"
+	},
+	"noServer": {
+		"message": "no server can choses"
+	},
+	"setting": {
+		"message": "option setting"
+	},
+	"loginFirst": {
+		"message": "can't found token please login first"
+	}
+}

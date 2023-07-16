@@ -1,0 +1,44 @@
+{
+	"extName": {
+		"message": "简单关注"
+	},
+	"extDescription": {
+		"message": "简化您在两个不同的联邦服务器(mastodon, misskey...)上关注用户的流程"
+	},
+	"addServer": {
+		"message": "添加服务器"
+	},
+	"serverDomain": {
+		"message": "服务器域名"
+	},
+	"serverType": {
+		"message": "服务器类型"
+	},
+	"getToken": {
+		"message": "获取Token"
+	},
+	"serverToken": {
+		"message": "服务器Token"
+	},
+	"delete": {
+		"message": "删除"
+	},
+	"typeAndDomainNotNull": {
+		"message": "域名和类型不能为空"
+	},
+	"unknownError": {
+		"message": "未知错误请查看控制台"
+	},
+	"notUserPage": {
+		"message": "无效的用户界面"
+	},
+	"noServer": {
+		"message": "没有可选服务器"
+	},
+	"setting": {
+		"message": "插件设置"
+	},
+	"loginFirst": {
+		"message": "未查询到Token，请先登录"
+	}
+}

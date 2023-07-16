@@ -1,0 +1,44 @@
+{
+	"extName": {
+		"message": "フォロー"
+	},
+	"extDescription": {
+		"message": "どのサーバーでもユーザーを簡単にフォローできる(mastodon, misskey...)"
+	},
+	"addServer": {
+		"message": "サーバー追加"
+	},
+	"serverDomain": {
+		"message": "ドメイン"
+	},
+	"serverType": {
+		"message": "タイプ"
+	},
+	"getToken": {
+		"message": "Token取得"
+	},
+	"serverToken": {
+		"message": "Token"
+	},
+	"delete": {
+		"message": "削除"
+	},
+	"typeAndDomainNotNull": {
+		"message": "タイプとドメインは必要です"
+	},
+	"unknownError": {
+		"message": "不明なエラー、コンソールを見てください"
+	},
+	"notUserPage": {
+		"message": "無効なペイジーです"
+	},
+	"noServer": {
+		"message": "選択可能なサーバーがいない"
+	},
+	"setting": {
+		"message": "オプション"
+	},
+	"loginFirst": {
+		"message": "Tokenが見つかりません，ログインしてください"
+	}
+}
