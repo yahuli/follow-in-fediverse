@@ -3,25 +3,19 @@ import { onMounted, reactive, watch } from 'vue';
 import { ref } from 'vue';
 import { $t, localGet } from './utils/chrome';
 import { Server } from './server';
-import { Mastodon } from './softwares/mastodon'
-import { Misskey } from './softwares/misskey';
-import { Software} from './softwares/software'
+import { softwareMap } from "./softwares/software";
 
 const serverList: Server[] = reactive([])
 
 const loading = ref(false)
 const alertVisible = ref(false)
 const alertMsg = ref('')
-const serverMap = new Map<string, Software>([
-  ['mastodon', new Mastodon()],
-  ['misskey', new Misskey()]
-])
 const usernameQuery = ref('')
 const domainQuery = ref('')
 
 onMounted(() => {
 	loading.value = true
-	alert($t('notUserPage'))
+	alert($t('loading'))
 	watch(serverList, (newValue, _) => {
 		if (newValue.length > 0) {
 			loading.value = false
@@ -29,7 +23,11 @@ onMounted(() => {
 		}
 	})
 	chrome.runtime.onMessage.addListener((request) => {
-		if (request.type === 'SITE_INFO' && request.payload) {
+		if (request.type === 'SITE_INFO') {
+			if (!request.payload) {
+				alert($t('notUserPage'))
+				return
+			}
 			if (request.payload.name) {
 				usernameQuery.value = request.payload.name
 				domainQuery.value = request.payload.domain
@@ -64,7 +62,7 @@ async function getCurrentTabId() {
 function follow(server: Server) {
 	loading.value = true
 	alertVisible.value = false
-	const instance = serverMap.get(server.type)
+	const instance = softwareMap.get(server.type)
 	if (instance) {
 		instance.domain = server.domain
 		instance.token = server.token

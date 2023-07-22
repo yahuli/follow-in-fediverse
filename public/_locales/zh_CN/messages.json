@@ -40,5 +40,8 @@
 	},
 	"loginFirst": {
 		"message": "未查询到Token，请先登录"
+	},
+	"loading": {
+		"message": "正在加载中"
 	}
 }

@@ -1,9 +1,11 @@
-import { Software } from "./software";
+import { ParsedInfo, Software } from "./software";
 import axios from "axios";
 
 export class Misskey implements Software {
 	domain: string = ''
 	token: string = ''
+	private REGEX = /\/@(?<name>[\w_]+)(@(?<domain>[\w.\-]+))?/
+	private SOFTWORE = 'misskey'
 
 	async getToken() {
 		const cookies = await chrome.cookies.getAll({ domain: this.domain, name: 'token' })
@@ -36,5 +38,19 @@ export class Misskey implements Software {
 			})
 			return followRsp
 		}
+	}
+
+	parse(): ParsedInfo {
+		if (this.REGEX.test(window.location.pathname)) {
+			const groups = this.REGEX.exec(window.location.pathname)?.groups
+			if (groups) {
+				return {
+					software: this.SOFTWORE,
+					domain: groups.domain ?? window.location.host,
+					name: groups.name
+				}
+			}
+		}
+		throw Error(`${this.SOFTWORE} parse error!`)
 	}
 }

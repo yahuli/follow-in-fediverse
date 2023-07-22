@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { Mastodon } from './softwares/mastodon'
-import { Misskey } from './softwares/misskey';
-import { Software} from './softwares/software'
+import { softwareMap } from "./softwares/software";
 import { localSet, localGet, $t } from './utils/chrome'
 import { watch } from 'vue';
 import { ref } from 'vue';
@@ -9,14 +7,7 @@ import { reactive } from 'vue';
 import { onMounted } from 'vue';
 import { Server } from './server'
 
-const serverTypeList = [
-  'mastodon',
-  'misskey',
-];
-const serverMap = new Map<string, Software>([
-  ['mastodon', new Mastodon()],
-  ['misskey', new Misskey()]
-])
+const typeList = Array.from(softwareMap, (e) => e[0])
 const serverList: Server[] = reactive([])
 const snackbarMsg = ref('')
 const snackbarVisible = ref(false)
@@ -44,17 +35,17 @@ function addServer() {
 
 function getToken(server: Server) {
   if (server.domain && server.type) {
-    const serverinstance = serverMap.get(server.type)
+    const serverinstance = softwareMap.get(server.type)
     if (serverinstance) {
       serverinstance.domain = server.domain
-      serverinstance.getToken().then(token => {
+      serverinstance.getToken().then((token: string) => {
         if (token) {
           server.token = token
         } else {
           alert($t('loginFirst'))
 					chrome.windows.create({ url: `https://${server.domain}`, setSelfAsOpener: true })
         }
-      }).catch(e => {
+      }).catch((e: Error) => {
 				console.error(e)
 				alert($t('unknownError'))
 			})
@@ -82,7 +73,7 @@ function alert(msg: string) {
           <v-select
             v-model="server.type"
             :label="$t('serverType')"
-            :items="serverTypeList">
+            :items="typeList">
             <template v-slot:prepend>
               <v-btn color="red" @click="serverList.splice(index, 1)">{{ $t('delete') }}</v-btn>
             </template>

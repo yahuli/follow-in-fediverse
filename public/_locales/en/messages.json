@@ -40,5 +40,8 @@
 	},
 	"loginFirst": {
 		"message": "can't found token please login first"
+	},
+	"loading": {
+		"message": "loading"
 	}
 }

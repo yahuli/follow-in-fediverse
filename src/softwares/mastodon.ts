@@ -1,9 +1,11 @@
 import axios from "axios";
-import { Software } from "./software";
+import { ParsedInfo, Software } from "./software";
 
 export class Mastodon implements Software {
 	domain: string = ''
 	token: string = ''
+	private REGEX = /\/@(?<name>[\w_]+)(@(?<domain>[\w.\-]+))?/
+	private SOFTWORE = 'mastodon'
 
 	async sendSignal(tabId: number) {
 		const token = await chrome.tabs.sendMessage(tabId, {
@@ -57,5 +59,19 @@ export class Mastodon implements Software {
 			return followRsp
 		}
 
+	}
+
+	parse(): ParsedInfo {
+		if (this.REGEX.test(window.location.pathname)) {
+			const groups = this.REGEX.exec(window.location.pathname)?.groups
+			if (groups) {
+				return {
+					software: this.SOFTWORE,
+					domain: groups.domain ?? window.location.host,
+					name: groups.name
+				}
+			}
+		}
+		throw Error(`${this.SOFTWORE} parse error!`)
 	}
 }

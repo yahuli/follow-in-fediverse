@@ -2,14 +2,25 @@
 
 Simplifies follow other users in the Fediverse like mastodon, misskey and more. 
 
-Notice: Current just support for mastodon and misskey.
-
 ![guide](https://github.com/yahuli/follow-in-fediverse/assets/22337304/0e7859ed-04f4-43da-a30e-64f4f55b4a9c)
 
 ## Install
 **[![Get it in store!](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/follow-in-fediverse/npggidokekmmgfedpemojadejamlpgld)**
 
 Or you can download this project, build by yourself.
+
+## Support List
+- [x] mastodon
+- [x] misskey
+- [x] pixelfed
+- [ ] pleroma
+- [ ] firefish
+- [ ] lemmy
+- [ ] peertube
+- [ ] kbin
+- [ ] microdotblog
+- [ ] writefreely
+- [ ] wordpress
 
 ## How to use
 1. make sure you have already login on your major server

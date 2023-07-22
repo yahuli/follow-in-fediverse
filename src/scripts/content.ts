@@ -1,4 +1,5 @@
 import axios from "axios";
+import { softwareMap } from "../softwares/software";
 
 const schema: Array<String> = [
 	'http://nodeinfo.diaspora.software/ns/schema/1.0',
@@ -6,11 +7,6 @@ const schema: Array<String> = [
 	'http://nodeinfo.diaspora.software/ns/schema/2.0',
 	'http://nodeinfo.diaspora.software/ns/schema/2.1',
 ]
-
-const regexs: Record<string, RegExp> = {
-	'mastodon': /\/@(?<name>[\w_]+)(@(?<domain>[\w.\-]+))?/,
-	'misskey': /\/@(?<name>[\w_]+)(@(?<domain>[\w.\-]+))?/
-}
 
 async function parseSite() {
 	const wellknown = await axios.get(window.location.origin + '/.well-known/nodeinfo')
@@ -21,21 +17,13 @@ async function parseSite() {
 			const nodeinfo = await axios.get(link.href)
 			if (nodeinfo.status == 200) {
 				const software = nodeinfo.data.software.name
-				const regx = regexs[software]
-				const pathname = window.location.pathname
-				if (regx.test(pathname)) {
-					const groups = regx.exec(pathname)?.groups
-					if (groups) {
-						return [software, groups.domain ?? window.location.host, groups.name]
-					}
-				}
+				const instance = softwareMap.get(software)
+				return instance!.parse()
 			}
 		}
 	}
-	return []
+	return null
 }
-
-
 
 
 chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
@@ -55,13 +43,19 @@ chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
 				chrome.runtime.sendMessage({
 					type: 'SITE_INFO',
 					payload: {
-						software: result[0],
-						domain: result[1],
-						name: result[2],
+						software: result.software,
+						domain: result.domain,
+						name: result.name,
 						currentDomain: window.location.host
 					}
 				})
 			}
+		}).catch(e => {
+			chrome.runtime.sendMessage({
+				type: 'SITE_INFO',
+				payload: false
+			})
+			console.error(e)
 		})
 	}
 });

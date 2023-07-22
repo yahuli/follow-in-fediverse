@@ -40,5 +40,8 @@
 	},
 	"loginFirst": {
 		"message": "Tokenが見つかりません，ログインしてください"
+	},
+	"loading": {
+		"message": "少し待てください"
 	}
 }
