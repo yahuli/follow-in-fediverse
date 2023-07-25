@@ -1,6 +1,7 @@
 import { Mastodon } from "./mastodon"
 import { Misskey } from "./misskey"
 import { Pixelfed } from "./pixelfed"
+import { Fedibird } from "./fedibird"
 
 export type ParsedInfo = {
 	software: string,
@@ -18,7 +19,13 @@ export interface Software {
 export const softwareMap = new Map<string, Software>([
   ['mastodon', new Mastodon()],
   ['misskey', new Misskey()],
-	['pixelfed', new Pixelfed()]
+	['pixelfed', new Pixelfed()],
+	['fedibird', new Fedibird()],
 ])
 
-export {Mastodon, Misskey}
+export {
+	Mastodon,
+	Misskey,
+	Pixelfed,
+	Fedibird,
+}
