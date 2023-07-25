@@ -13,6 +13,7 @@ Or you can download this project, build by yourself.
 - [x] mastodon
 - [x] misskey
 - [x] pixelfed
+- [x] fedibird
 - [ ] pleroma
 - [ ] firefish
 - [ ] lemmy
