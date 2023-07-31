@@ -42,6 +42,8 @@ onMounted(() => {
 						if (serverList.length == 0) {
 							alert($t('noServer'))
 						}
+					} else {
+						alert($t('noServer'))
 					}
 				})
 			}
