@@ -88,6 +88,7 @@ function alert(msg: string) {
 
 <template>
 	<v-card
+		rounded="0"
 		:loading="loading"
 		min-height="50"
 		min-width="400">
@@ -99,6 +100,7 @@ function alert(msg: string) {
 			:color="server.followed ? 'green' : ''"
 			@click="follow(server)">{{ server.domain }}</v-btn>
 		<v-alert
+			rounded="0"
 			v-if="alertVisible"
 			color="warning"
 			class="text-center"
